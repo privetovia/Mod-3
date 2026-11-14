@@ -64,13 +64,12 @@ public final class WrenchToggle {
 
         // 2. Клик по баку рядом с двигателем: разрешить/запретить забор лавы
         if (!CsFluid.pullTanksEnabled()) return;
-        if (AutoLoad.isKinetic(be)) return; // насосы, валы и т.п. — ключ работает как обычно
-
         IFluidHandler tankCap = level.getCapability(Capabilities.FluidHandler.BLOCK, clickedPos, event.getFace());
         if (tankCap == null) {
             tankCap = level.getCapability(Capabilities.FluidHandler.BLOCK, clickedPos, null);
         }
-        if (tankCap == null) return;
+        // Блок должен иметь настоящую ёмкость (бак, ядро ходока и т.п.); иначе ключ работает как обычно
+        if (tankCap == null || tankCap.getTanks() <= 0) return;
 
         List<AutoToggle> engines = new ArrayList<>();
         for (Direction dir : Direction.values()) {
