@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "package": "com.example.csfluid.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "mixins": [
+    "EngineAutoLoadMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}
